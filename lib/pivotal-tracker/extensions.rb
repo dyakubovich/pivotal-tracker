@@ -5,7 +5,7 @@ module HappyMapper
     alias_method :orig_parse, :parse
     def parse(xml, options={})
       xml = xml.to_s if xml.is_a?(RestClient::Response)
-      orig_parse(xml, options)
+      JSON.parse(xml)
     end
   end
 end
