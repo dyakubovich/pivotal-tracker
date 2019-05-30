@@ -4,8 +4,9 @@ module HappyMapper
   module ClassMethods
     alias_method :orig_parse, :parse
     def parse(xml, options={})
-      xml = xml.to_s if xml.is_a?(RestClient::Response)
-      JSON.parse(xml)
+      # binding.pry
+      # xml = ActiveSupport::JSON.decode(xml).to_xml if xml.is_a?(RestClient::Response)
+      JSON.parse(xml, object_class: OpenStruct)
     end
   end
 end
